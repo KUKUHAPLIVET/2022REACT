@@ -1,0 +1,26 @@
+
+.mainDialogs{
+display: flex;
+padding: 10px;
+}
+
+
+
+.dialogs{
+    padding: 20px;
+    margin: 20px;
+}
+
+
+.dialogs .dialog{
+
+}
+
+.messages{
+    padding: 20px;
+    margin: 20px;
+}
+
+.messages .message{
+
+}
