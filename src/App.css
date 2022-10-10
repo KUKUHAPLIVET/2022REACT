@@ -17,14 +17,14 @@
     "n c "
     "f f ";
 
-    grid-template-rows: 50px 1200px 50px ;
-    grid-template-columns:150px 300px;
+    grid-template-rows: 1fr 2fr 1fr ;
+    grid-template-columns:1fr 2fr;
   
 }
 
 .header {
 grid-area: h ;
-background-color: aqua;
+background-color: rgb(255, 0, 0);
 }
 
 .navBar {

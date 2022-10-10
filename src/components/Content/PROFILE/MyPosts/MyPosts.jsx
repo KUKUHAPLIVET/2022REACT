@@ -1,25 +1,37 @@
 import Post from "./Posts/Post"
+import React from "react"
 
-const MyPosts = () => {
 
-    let posts=[
-        {message:"HI", likes:"20"},
-        {message:"HI222", likes:"2213120"},
-        {message:"HI433", likes:"2550"},
-        {message:"HI4444", likes:"220"},
-        {message:"HI555", likes:"790"},
-    ]
 
-    let postsElements = posts.map(p=><Post message={p.message} likes={p.likes}/>)
+const MyPosts = (props) => {
+
+  
+    let postsElements = props.posts.
+    map(p=><Post message={p.message} likes={p.likes}/>)
+
+    // let newPostElement= React.createRef()
+
+    let addPost = () => {
+        props.sendMessage()
+    }
+
+
+    let onChangeText = (e) =>{
+        let text = e.target.value
+        props.onChangeMessageText(text)
+    }
+
+
     return(
             <div>
                 <div>
-                    <textarea name="" id="" cols="30" rows="10"></textarea>
-                    <button>add post
+                    <textarea onChange={onChangeText} 
+                    // ref={newPostElement}  
+                    value={props.newPostText} 
+                    ></textarea>
+                    <button onClick={addPost}>add post
                     </button>
                        {postsElements}
-
-
 
                 </div>
                 	
@@ -27,5 +39,4 @@ const MyPosts = () => {
 
     )
 }
-
 export default MyPosts

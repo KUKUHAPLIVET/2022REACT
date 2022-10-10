@@ -5,13 +5,15 @@ import Footer from './components/Footer/Footer';
 import Profile from './components/Content/PROFILE/profile';
 import Navbar from './components/NavBar/Navbar';
 import Dialogs from './components/Content/Dialogs/Dialogs';
-import {Route, Switch}  from 'react-router-dom';
+import {Route, Routes}  from 'react-router-dom';
+import state from './Redux/store';
+import DialogsContainer from './components/Content/Dialogs/DialogsContainer';
+import UsersContainer from './components/Content/Users/UsersContainer';
 
-const App = () => {
+const App = (props) => {
   return (
     <div className="App">
       <div className="appWrapper">
-
 
         <div className='header'>
           <Header />
@@ -19,18 +21,27 @@ const App = () => {
         <div className='navBar'>
           <Navbar />
         </div>
+
         <div className='content'>
-         <Switch>
-            <Route  path='/dialogs' render={() =>  <Dialogs/> }/>
-            <Route  path='/profile' render={() =>  <Profile /> }/>
-            </Switch>
-          {/* <Profile /> */}
+            
+            <Routes>
+            <Route path='/dialogs/*' element={
+              <DialogsContainer />} />
+
+            <Route path='/profile' element={
+              <Profile />} />
+
+              <Route path='/users' element={
+              <UsersContainer/>}/>
+
+            </Routes>
+       
 
 
-          
 
 
         </div>
+
         <div className='footer'>
           <Footer />
         </div>
@@ -40,3 +51,5 @@ const App = () => {
 }
 
 export default App;
+
+

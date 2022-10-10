@@ -7,7 +7,7 @@
 .item a:active{
     color: white;
 }
-.active {
+.activeLink {
     color: gold;
     text-decoration: none;
 }
