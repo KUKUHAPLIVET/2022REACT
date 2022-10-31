@@ -3,9 +3,11 @@ import MyPostsContainer from "./MyPosts/MyPostsContainer"
 import Profile from "./profile"
 import React, { useEffect } from "react"
 import { connect } from "react-redux"
-import {setUserProfile} from "../../../Redux/profileReducer"
+import {getStatus, getUserProfile, updateStatus} from "../../../Redux/profileReducer"
 import axios from "axios"
 import finalPropsSelectorFactory from "react-redux/es/connect/selectorFactory"
+import { withAuthRedirect } from "../../../hoc/withAuthRedirect"
+import { compose } from "redux"
 
 
 
@@ -16,12 +18,16 @@ import finalPropsSelectorFactory from "react-redux/es/connect/selectorFactory"
 
 const ProfileContainer = (props) => {
 
-  
+  // useEffect
 
   return (
     <div>
       <Profile profile={props.profile} 
-      setUserProfile ={props.setUserProfile} />
+      getStatus={props.getStatus}
+      updateStatus={props.updateStatus}
+      auth={props.auth}
+      getUserProfile ={props.getUserProfile}
+      status={props.status} />
     </div>
 
   )
@@ -59,13 +65,22 @@ const ProfileContainer = (props) => {
 //   }
 // }
 
+
+
+
 const mapStateToProps = (state) => ({
     
-      profile:state.profilePage.profile
+      profile:state.profilePage.profile,
+      auth: state.auth,
+      isAuth:state.auth.isAuth,
+      status:state.profilePage.status
+      
 
 })
 
+export default compose  (connect(mapStateToProps, { getUserProfile, getStatus,updateStatus }),
+  withAuthRedirect)(ProfileContainer)
 
 
 
-export default connect(mapStateToProps, { setUserProfile })(ProfileContainer)
+

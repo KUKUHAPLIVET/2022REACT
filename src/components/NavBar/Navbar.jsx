@@ -1,13 +1,15 @@
+import { connect } from "react-redux"
 import { NavLink } from "react-router-dom"
+import { compose } from "redux"
 import s from "./Navbar.module.css"
 
-const Navbar = () => {
+const Navbar = (props) => {
     return (
         <div className={s.nav}>
 
             <div className={s.item}>
                 <NavLink className= { ({isActive}) => isActive ? s.activeLink : undefined}
-                 to="/profile" >Profile</NavLink>
+                 to={`/profile/${props.authUser}`} >Profile</NavLink>
             </div>
             <div className={s.item}>
                 <NavLink className={  ({isActive}) =>isActive ? s.activeLink : undefined} 
@@ -25,4 +27,12 @@ const Navbar = () => {
     )
 }
 
-export default Navbar
+const mapStateToProps = (state)=>({
+  authUser : state.auth.userId
+
+})
+
+export default compose(connect(mapStateToProps,))(Navbar)
+
+
+

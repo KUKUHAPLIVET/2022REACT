@@ -5,6 +5,7 @@ import React from "react"
 
 const MyPosts = (props) => {
 
+    console.log("render YO");
   
     let postsElements = props.posts.
     map(p=><Post message={p.message} likes={p.likes}/>)
@@ -14,6 +15,7 @@ const MyPosts = (props) => {
     let addPost = () => {
         props.sendMessage()
     }
+    
 
 
     let onChangeText = (e) =>{
